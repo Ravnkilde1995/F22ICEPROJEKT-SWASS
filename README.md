@@ -1,0 +1,5 @@
+# F22ICEPROJEKT-SWASS
+
+ICE PROJECT ASSIGNMENT
+
+GROUP MEMBERS: Natasja, veronica, William and Oliver
