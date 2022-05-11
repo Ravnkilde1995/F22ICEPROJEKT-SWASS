@@ -1,0 +1,115 @@
+@startuml
+
+DBConnector -- Main
+Main -- LoginMenu
+LoginMenu -- MainMenu
+MainMenu -- UserMenu
+MainMenu -- TransactionMenu
+UserMenu -- User
+TransactionMenu -- Transaction
+Repo -- UserRepo
+Repo -- TransactionRepo
+
+class DBConnector {
++ static Connection connection;
++ void createConnection()
+}
+
+class LoginMenu{
+- login or create new user
+- Username
+- Password
+}
+
+class Main{
+}
+
+class MainMenu {
+- Static ArrayList<LoginMenu> loginMenu
+- Static ArrayList<UserMenu> userMenu
+- Static ArrayList<TransactionMenu> transactionMenu
+- Static UserRepo userRepo
+- Static TransactionRepo transactionRepo
++ void MainMenu()
+}
+
+class UserMenu{
++ UserMenu(Scanner input, ArrayList<User> user, ArrayList<Transaction> transactions)
++ showBalance(ArrayList<User> user)
++ withdrawMoney(Scanner input, ArrayList<User> user)
++ addMoney(Scanner input, ArrayList<User> user)
++ showTransactions(ArrayList<User> user, ArrayList<Transaction> transactions)
+}
+
+class TransactionMenu{
++ TransactionMenu(Scanner input, ArrayList<User> user, ArrayList<Transaction> transactions)
++ searchForUser(Scanner input, (ArrayList<User> user)
++ commitTransactions(Scanner input, ArrayList<User> user, ArrayList<Transaction> transactions)
+}
+
+class User{
+- int userID
+- String Name
+- String LastName
+- int SocialSecurityNumber
+- String Gender
+- String Username
+- String Password
+- int PhoneNumber
+- int Balance
++ getName()
++ void setName()
++ getLastName()
++ void setLastName()
++ getSocialSecurityNumber()
++ void setSocialSecurityNumber()
++ getGender()
++ void setGender()
++ getUsername()
++ void setUsername()
++ getPassword()
++ void setPassword()
++ getPhoneNumber()
++ void setPhoneNumber()
++ getBalance(int)
++ void setBalance()
++ toString()
+}
+class Transaction {
+- int transactionID
+- int date
+- int amount
+- String sender
+- String receiver
+- ArrayList<Transaction> transactions
++ getDate()
++ void setDate()
++ getAmount()
++ void setAmount()
++ getSender()
++ void setSender()
++ getReceiver()
++ void setReceiver()
++ toString()
+}
+
+interface Repo {
+- ArrayList<T> readAll()
+- void create(T t)
+- void update(T t)
+- void delete(int id)
+}
+class UserRepo {
+- ArrayList<UserRepo> readAll()
+- void create(UserRepo userRepo)
+- void update(UserRepo userRepo)
+- void delete(int id)
+}
+class TransactionRepo {
+- ArrayList<TransactionRepo> readAll()
+- void create(TransactionRepo transactionRepo)
+- void update(TransactionRepo transactionRepo)
+- void delete(int id)
+}
+
+@enduml

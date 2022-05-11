@@ -1,0 +1,46 @@
+@startuml
+
+class DBConnector
+
+class LoginMenu{
+- login or create new user
+- Username
+- Password
+}
+
+class MainMenu {
+- Navigate menu
+- Log off
+}
+
+class UserMenu{
+- Balance
+- Add money
+- Withdraw money
+- Transaction
+
+}
+class TransactionMenu{
+- Search for user
+- Commit transaction
+}
+class User{
+- Name
+- LastName
+- SocialSecurityNumber
+- Gender
+- Username
+- Password
+- PhoneNumber
+}
+
+class Transaction
+interface Repo {
+- Save
+- Update
+- Delete
+}
+class UserRepo
+class TransactionRepo
+
+@enduml
