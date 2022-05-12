@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserMenu {
 
-    // static UserRepo userRepo;
+    static UserRepo userRepo;
 
     public static void UserMenu(Scanner input, ArrayList<User> users, ArrayList<Transaction> transactions) {
         int answer = 1;

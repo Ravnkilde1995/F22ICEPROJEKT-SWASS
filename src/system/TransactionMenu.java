@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class TransactionMenu {
 
-    //static TransactionRepo;
+    static TransactionRepo transactionRepo;
 
-    public static void TransactionMenu(Scanner input, ArrayList<Transaction> transactions) {
+    public static void TransactionMenu(Scanner input, ArrayList<Transaction> transactions, ArrayList<User> users) {
 
         int answer = 1;
 
@@ -21,10 +21,10 @@ public class TransactionMenu {
             answer = input.nextInt();
             switch (answer) {
                 case 1:
-                    searchForUser();
+                    searchForUser(input, users);
                     break;
                 case 2:
-                    commitTransactions();
+                    commitTransactions(input, users);
                     break;
                 case 0:
                     System.out.println("returning to main menu...");
@@ -37,11 +37,11 @@ public class TransactionMenu {
     // Methods
     //***
 
-    void searchForUser(Scanner input, ArrayList<User> user){
+    public static void searchForUser(Scanner input, ArrayList<User> users){
 
     }
 
-    void commitTransactions(Scanner input, ArrayList<User> user){
+    public static void commitTransactions(Scanner input, ArrayList<User> users){
 
     }
 }

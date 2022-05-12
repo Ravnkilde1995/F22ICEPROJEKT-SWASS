@@ -2,6 +2,7 @@ package system;
 import java.util.ArrayList;
 
 public class TransactionRepo implements Repo<Transaction> {
+
     @Override
     public ArrayList<Transaction> readAll() {
         return null;

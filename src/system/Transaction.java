@@ -1,13 +1,28 @@
 package system;
 
 public class Transaction {
-    //fields
+    //Fields
+    //***********************
+
     int transactionID;
     int date;
     int amount;
     String sender;
     String reciever;
-    // methods
+
+    // Constructor
+    //***********************
+
+    public Transaction(int transactionID, int date, int amount, String sender, String reciever) {
+        this.transactionID = transactionID;
+        this.date = date;
+        this.amount = amount;
+        this.sender = sender;
+        this.reciever = reciever;
+    }
+
+    // Methods
+    //***********************
 
     public int getTransactionID() {
         return transactionID;
@@ -55,8 +70,8 @@ public class Transaction {
                 "transactionID=" + transactionID +
                 ", date=" + date +
                 ", amount=" + amount +
-                ", sender='" + sender + ''' +
-        ", reciever='" + reciever + ''' +
+                ", sender='" + sender +
+        ", reciever='" + reciever  +
         '}';
     }
 }
