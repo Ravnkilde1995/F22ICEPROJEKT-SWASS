@@ -2,4 +2,4 @@
 
 ICE PROJEKT ASSIGNMENT
 
-GROUP MEMBERS: Natasja, veronica, William and Oliver
+GROUP MEMBERS: Natasja, Veronika, William and Oliver
