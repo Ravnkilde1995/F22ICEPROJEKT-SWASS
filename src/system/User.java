@@ -18,7 +18,17 @@ public class User {
     //Constructor
     //***********************
 
-
+    public User(int userID, String name, String lastName, int socialSecurityNumber, String gender, String username, String password, int phoneNumber, int balance) {
+        this.userID = userID;
+        this.name = name;
+        this.lastName = lastName;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.gender = gender;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.balance = balance;
+    }
 
     //Methods
     //***********************
