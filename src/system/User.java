@@ -46,6 +46,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public User(int userID, int balance) {
+        this.userID = userID;
+        this.balance = balance;
+    }
+
     //Methods
     //***********************
     public int getUserId() {

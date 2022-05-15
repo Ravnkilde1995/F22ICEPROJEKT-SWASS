@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public interface Repo <T> {
 
+    void read(T t, int id);
 
-    ArrayList<T> readAll();
-     void create (T t);
+    void create (T t);
 
     void update (T t, int id);
 

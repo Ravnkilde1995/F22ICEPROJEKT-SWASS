@@ -1,6 +1,11 @@
 package system;
+import javax.swing.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static system.DBConnection.connection;
 
 public class UserMenu {
 
@@ -17,18 +22,17 @@ public class UserMenu {
             System.out.println("Press 4 to show recent transactions");
             System.out.println("Press 0 to return to main menu");
 
-
             answer = input.nextInt();
 
             switch (answer) {
                 case 1:
-                    showBalance(users);
+                    //showBalance(username);
                     break;
                 case 2:
-                    withdrawMoney(input, users);
+                    withdrawMoney(input);
                     break;
                 case 3:
-                    addMoney(input, users);
+                    addMoney(input);
                     break;
                 case 4:
                     showTransactions(users, transactions);
@@ -40,15 +44,28 @@ public class UserMenu {
         }
     }
 
-    public static void showBalance(ArrayList<User> users) {
+    public static void showBalance(String username) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery("SELECT * FROM users WHERE username = " + "'" + username+ "'");
+
+            ResultSet result = statement.getResultSet();
+
+            while (result.next()) {
+                int balance = result.getInt("balance");
+                System.out.println(balance);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void withdrawMoney(Scanner input) {
 
     }
 
-    public static void withdrawMoney(Scanner input, ArrayList<User> users) {
-
-    }
-
-    public static void addMoney(Scanner input, ArrayList<User> users) {
+    public static void addMoney(Scanner input) {
 
     }
 
