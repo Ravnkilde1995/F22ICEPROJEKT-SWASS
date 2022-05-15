@@ -1,12 +1,7 @@
 package system;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static system.DBConnection.connection;
 
 public class TransactionMenu {
 
@@ -26,7 +21,7 @@ public class TransactionMenu {
             answer = input.nextInt();
             switch (answer) {
                 case 1:
-                    searchForUser(input);
+                    searchForUser(input, users);
                     break;
                 case 2:
                     commitTransactions(input, users);
@@ -42,23 +37,8 @@ public class TransactionMenu {
     // Methods
     //***
 
-    public static void searchForUser (Scanner input){
-        System.out.println("Search for a user");
-        String searchForAUser = input.next();
-        String sql = "SELECT * FROM users WHERE name LIKE " + "'%" + searchForAUser + "%'";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                String firstname = rs.getString("name");
-                String lastname = rs.getString("lastname");
+    public static void searchForUser(Scanner input, ArrayList<User> users){
 
-                System.out.println(firstname + " " + lastname);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void commitTransactions(Scanner input, ArrayList<User> users){
