@@ -30,6 +30,22 @@ public class User {
         this.balance = balance;
     }
 
+    public User(int userID, String username, String password) {
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String name, String lastName, int socialSecurityNumber, String gender, String username, String password, int phoneNumber) {
+        this.name = name;
+        this.lastName = lastName;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.gender = gender;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
     //Methods
     //***********************
     public int getUserId() {

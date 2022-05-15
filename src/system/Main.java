@@ -19,8 +19,7 @@ public class Main {
         UserMenu.userRepo = new UserRepo();
         //user = UserMenu.userRepo.readAll();
 
+        LoginMenu.LoginMenu(input, users);
         MainMenu.MainMenu(input, transactions, users);
-        UserMenu.UserMenu(input, users, transactions);
-        TransactionMenu.TransactionMenu(input, transactions, users);
     }
 }

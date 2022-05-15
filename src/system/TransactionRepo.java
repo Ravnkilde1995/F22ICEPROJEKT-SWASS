@@ -14,9 +14,10 @@ public class TransactionRepo implements Repo<Transaction> {
     }
 
     @Override
-    public void update(Transaction transaction) {
+    public void update(Transaction transaction, int id) {
 
     }
+
 
     @Override
     public void create(Transaction transaction) {

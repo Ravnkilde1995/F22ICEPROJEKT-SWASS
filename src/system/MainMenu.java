@@ -12,28 +12,29 @@ public class MainMenu {
     static TransactionRepo transactionRepo;
 
 
-    public static void MainMenu(Scanner input, ArrayList<Transaction> transactions, ArrayList<User> users){
+    public static void MainMenu(Scanner input, ArrayList<Transaction> transactions, ArrayList<User> users) {
         int answer = 1;
 
-        while (answer!=0) {
-            System.out.println("User menu");
+        while (answer != 0) {
+            System.out.println("Main menu");
             System.out.println("Press 1 to show user menu");
             System.out.println("Press 2 to show transaction menu");
             System.out.println("Press 0 to terminate program");
-        }
 
-        answer = input.nextInt();
 
-        switch(answer) {
-            case 1:
-                UserMenu.UserMenu(input, users, transactions);
-                break;
-            case 2:
-                TransactionMenu.TransactionMenu(input, transactions, users);
-                break;
-            case 0:
-                System.out.println("Terminating program ...");
-                break;
+            answer = input.nextInt();
+
+            switch (answer) {
+                case 1:
+                    UserMenu.UserMenu(input, users, transactions);
+                    break;
+                case 2:
+                    TransactionMenu.TransactionMenu(input, transactions, users);
+                    break;
+                case 0:
+                    System.out.println("Terminating program ...");
+                    break;
+            }
         }
     }
 }
