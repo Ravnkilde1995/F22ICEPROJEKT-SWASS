@@ -4,7 +4,8 @@ import java.util.ArrayList;
 public class TransactionRepo implements Repo<Transaction> {
 
     @Override
-    public void read(Transaction transactions, int id) {
+    public ArrayList<Transaction> readAll() {
+        return null;
     }
 
     @Override
@@ -16,6 +17,7 @@ public class TransactionRepo implements Repo<Transaction> {
     public void update(Transaction transaction, int id) {
 
     }
+
 
     @Override
     public void create(Transaction transaction) {
