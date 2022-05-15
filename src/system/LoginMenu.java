@@ -37,7 +37,7 @@ public class LoginMenu {
         }
     }
 
-    static void login(Scanner input) {
+    static void login(Scanner input){
 
         boolean loggedIn = false;
 
@@ -52,7 +52,7 @@ public class LoginMenu {
 
             User user = UserRepo.getUserByUsername(usernameInput);
 
-            loggedIn = validateLogin(input, user, passwordInput);
+            loggedIn = validateLogin(user, passwordInput);
 
         }
 
@@ -61,12 +61,11 @@ public class LoginMenu {
 
     }
 
-    static boolean validateLogin(Scanner input, User user, String passwordInput){
+    static boolean validateLogin(User user, String passwordInput){
         if(user != null){
             if(user.password.equals(passwordInput)){
                 username = user.username;
                 answer = 0;
-                myPageMenu(input, user);
                 return true;
             }else{
                 System.out.println("\n"+"Wrong user name or password");
@@ -78,7 +77,7 @@ public class LoginMenu {
         return false;
     }
 
-    public static void create(Scanner input) {
+    public static void create(Scanner input){
 
         System.out.println("Creating new user: "+"\n");
 
@@ -101,31 +100,5 @@ public class LoginMenu {
         System.out.println(user);
         UserRepo userRepo = new UserRepo();
         userRepo.create(user);
-    }
-
-
-    public static void myPageMenu(Scanner input, User user) {
-        int answer = 1;
-
-        while (answer != 0) {
-            System.out.println("Press 1 to show personal page");
-            System.out.println("Press 0 to go to main menu");
-
-            answer = input.nextInt();
-
-            switch (answer) {
-                case 1:
-                    System.out.println("Hello " + user.getName() + " " + user.getLastName() +
-                            "\n" + "Your personal information" +
-                            "\n" + "SSN: " + user.getSocialSecurityNumber() +
-                            "\n" + "Gender: " + user.getGender() +
-                            "\n" + "Phonenumber: " + user.getPhoneNumber() +
-                            "\n" + "Balance: " + user.getBalance());
-                    break;
-                case 0:
-                    System.out.println("Redirecting to main menu...");
-                    break;
-            }
-        }
     }
 }
