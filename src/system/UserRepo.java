@@ -1,8 +1,6 @@
 package system;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 
@@ -11,9 +9,9 @@ public class UserRepo implements Repo<User>{
     static Connection connection = DBConnection.connection;
 
     @Override
-    public ArrayList<User> readAll() {
-        return null;
+    public void read(User user, int id) {
     }
+
 
     @Override
     public void create(User user) {
@@ -41,7 +39,6 @@ public class UserRepo implements Repo<User>{
 
     @Override
     public void update(User user, int id) {
-
     }
 
     @Override
@@ -60,9 +57,15 @@ public class UserRepo implements Repo<User>{
 
             if (resultSet.next()){
                 int id = resultSet.getInt("userid");
+                String firstName = resultSet.getString("name");
+                String lastName = resultSet.getString("lastname");
+                int SSN = resultSet.getInt("socialsecuritynumber");
+                String gender = resultSet.getString("gender");
                 String password = resultSet.getString("password");
+                int phoneNumber = resultSet.getInt("phonenumber");
+                int balance = resultSet.getInt("balance");
 
-                User user = new User(id, username, password);
+                User user = new User(id, firstName, lastName, SSN, gender, username, password, phoneNumber, balance);
                 return user;
 
         }
