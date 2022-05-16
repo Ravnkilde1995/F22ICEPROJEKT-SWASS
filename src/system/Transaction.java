@@ -8,12 +8,20 @@ public class Transaction {
     int date;
     int amount;
     String sender;
-    String reciever;
+    int reciever;
 
     // Constructor
     //***********************
 
-    public Transaction(int transactionID, int date, int amount, String sender, String reciever) {
+    public Transaction(int transactionID, int date, int amount, String sender, int reciever) {
+        this.transactionID = transactionID;
+        this.date = date;
+        this.amount = amount;
+        this.sender = sender;
+        this.reciever = reciever;
+    }
+
+    public Transaction(int date, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
         this.date = date;
         this.amount = amount;
@@ -56,11 +64,11 @@ public class Transaction {
         this.sender = sender;
     }
 
-    public String getReciever() {
+    public int getReciever() {
         return reciever;
     }
 
-    public void setReciever(String reciever) {
+    public void setReciever(int reciever) {
         this.reciever = reciever;
     }
 

@@ -62,6 +62,32 @@ public class TransactionMenu {
     }
 
     public static void commitTransactions(Scanner input){
+        System.out.println("Type in your username: ");
+        String username = input.next();
+        System.out.println("Type in the ID of the user you want to transfer money to");
+        int ID = input.nextInt();
+        System.out.println("Type in the amount of money you want to transfer: ");
+        int amount = input.nextInt();
+        System.out.println("Type in the date of the transaction: ");
+        int date = input.nextInt();
 
+        UserRepo userRepo = new UserRepo();
+        User sender = UserRepo.getUserByUsername(username);
+        User reciever = UserRepo.getUserByID(ID);
+
+        int recieverAmount = reciever.balance+amount;
+        int senderAmount = sender.balance-amount;
+
+        if(sender.getBalance()>=0) {
+            userRepo.update(username, senderAmount);
+            userRepo.update(reciever.getUsername(), recieverAmount);
+
+            TransactionRepo transactionRepo = new TransactionRepo();
+            Transaction transactions = new Transaction(date, amount, username, ID);
+            transactionRepo.create(transactions);
+        }
+        else {
+            System.out.println("You dont have enought money to transfer");
+        }
     }
 }

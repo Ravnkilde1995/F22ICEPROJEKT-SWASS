@@ -85,4 +85,35 @@ public class UserRepo implements Repo<User>{
         return null;
 
     }
+
+    static User getUserByID(int ID) {
+
+        try {
+            String sql = "SELECT * FROM users WHERE userid = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, ID);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()){
+                int id = resultSet.getInt("userid");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastname");
+                int socialsecuritynumber = resultSet.getInt("socialsecuritynumber");
+                String gender = resultSet.getString("gender");
+                String userName = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                int phoneNumber = resultSet.getInt("phonenumber");
+                int balance = resultSet.getInt("balance");
+
+                User reciever = new User(id, name, lastName, socialsecuritynumber, gender, userName, password, phoneNumber, balance);
+                return reciever;
+            }
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+        return null;
+
+    }
 }
