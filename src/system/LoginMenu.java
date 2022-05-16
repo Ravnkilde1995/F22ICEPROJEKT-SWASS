@@ -15,10 +15,16 @@ public class LoginMenu {
         answer = 1;
 
         while (answer != 0) {
-            System.out.println("Login menu");
-            System.out.println("Press 1 to login ");
-            System.out.println("Press 2 to create a new user ");
-            System.out.println("Press 0 to go to main menu ");
+
+            // Reference https://localcoder.org/java-print-in-bold
+
+            String textInBold = "Login menu \n";
+            System.out.print("\033[0;1m" + textInBold + "\n");
+            System.out.println("Select your options");
+            System.out.println("-------------------------\n");
+            System.out.println("Press '1' to login ");
+            System.out.println("Press '2' to create a new user ");
+            System.out.println("Press '0' to go to main menu ");
 
 
             answer = input.nextInt();
@@ -31,7 +37,7 @@ public class LoginMenu {
                     create(input);
                     break;
                 case 0:
-                    System.out.println("Redirecting to main menu...");
+                    System.out.println("Redirecting to main menu...\n");
                     break;
             }
         }
@@ -115,8 +121,8 @@ public class LoginMenu {
 
             switch (answer) {
                 case 1:
-                    System.out.println("Hello " + user.getName() + " " + user.getLastName() +
-                            "\n" + "Your personal information" +
+                    System.out.println("\n" + "Hello, " + user.getName() + " " + user.getLastName() + "\n" +
+                            "\n" + "Your personal information" + "\n" + "------------------------- \n" +
                             "\n" + "SSN: " + user.getSocialSecurityNumber() +
                             "\n" + "Gender: " + user.getGender() +
                             "\n" + "Phonenumber: " + user.getPhoneNumber() +

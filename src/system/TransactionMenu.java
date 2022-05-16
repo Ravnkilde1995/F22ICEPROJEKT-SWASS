@@ -18,10 +18,11 @@ public class TransactionMenu {
 
         while (answer != 0) {
             System.out.println("Transaction menu");
-            System.out.println("**");
-            System.out.println("Press 1 to search for a user...");
-            System.out.println("Press 2 to make a transaction");
-            System.out.println("Press 0 to return to main menu");
+            System.out.println("Select your options");
+            System.out.println("-------------------------\n");
+            System.out.println("Press '1' to search for a user...");
+            System.out.println("Press '2' to make a transaction");
+            System.out.println("Press '0' to return to main menu");
 
             answer = input.nextInt();
             switch (answer) {
@@ -32,7 +33,7 @@ public class TransactionMenu {
                     commitTransactions(input);
                     break;
                 case 0:
-                    System.out.println("returning to main menu...");
+                    System.out.println("returning to main menu... \n");
                     break;
             }
         }

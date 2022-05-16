@@ -11,12 +11,14 @@ public class UserMenu {
         int answer = 1;
 
         while (answer != 0) {
-            System.out.println("User menu");
-            System.out.println("Press 1 to show balance");
-            System.out.println("Press 2 to withdraw money");
-            System.out.println("Press 3 to add money to an account");
-            System.out.println("Press 4 to show recent transactions");
-            System.out.println("Press 0 to return to main menu");
+            System.out.println("User menu \n");
+            System.out.println("Select your options");
+            System.out.println("------------------------- \n");
+            System.out.println("Press '1' to show balance");
+            System.out.println("Press '2' to withdraw money");
+            System.out.println("Press '3' to add money to an account");
+            System.out.println("Press '4' to show recent transactions");
+            System.out.println("Press '0' to return to main menu");
 
 
             answer = input.nextInt();
@@ -35,7 +37,7 @@ public class UserMenu {
                     showTransactions(users, transactions);
                     break;
                 case 0:
-                    System.out.println("Returning to the main menu");
+                    System.out.println("Returning to the main menu \n");
                     break;
             }
         }

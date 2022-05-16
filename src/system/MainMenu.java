@@ -16,10 +16,12 @@ public class MainMenu {
         int answer = 1;
 
         while (answer != 0) {
-            System.out.println("Main menu");
-            System.out.println("Press 1 to show user menu");
-            System.out.println("Press 2 to show transaction menu");
-            System.out.println("Press 0 to terminate program");
+            System.out.println("Main menu \n");
+            System.out.println("Select your options");
+            System.out.println("------------------------- \n");
+            System.out.println("Press '1' to show user menu");
+            System.out.println("Press '2' to show transaction menu");
+            System.out.println("Press '0' to terminate program");
 
 
             answer = input.nextInt();
@@ -32,7 +34,7 @@ public class MainMenu {
                     TransactionMenu.TransactionMenu(input, transactions, users);
                     break;
                 case 0:
-                    System.out.println("Terminating program ...");
+                    System.out.println("Terminating program ... \n");
                     break;
             }
         }
