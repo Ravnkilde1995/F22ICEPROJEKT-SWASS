@@ -29,7 +29,7 @@ public class TransactionMenu {
                     searchForUser(input);
                     break;
                 case 2:
-                    commitTransactions(input, users);
+                    commitTransactions(input);
                     break;
                 case 0:
                     System.out.println("returning to main menu...");
@@ -61,7 +61,7 @@ public class TransactionMenu {
         }
     }
 
-    public static void commitTransactions(Scanner input, ArrayList<User> users){
+    public static void commitTransactions(Scanner input){
 
     }
 }

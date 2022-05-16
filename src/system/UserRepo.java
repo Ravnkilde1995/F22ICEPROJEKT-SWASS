@@ -3,6 +3,7 @@ package system;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -31,17 +32,22 @@ public class UserRepo implements Repo<User>{
             preparedStatement.setInt(7, user.getPhoneNumber());
 
             preparedStatement.executeUpdate();
-
         }
         catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void update(User user, int id) {
+     public void update(String username, int balance) {
 
+            String sql = "UPDATE users SET balance = " + balance + " WHERE username = + " + "'" + username + "'";
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 
     @Override
@@ -60,11 +66,17 @@ public class UserRepo implements Repo<User>{
 
             if (resultSet.next()){
                 int id = resultSet.getInt("userid");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastname");
+                int socialsecuritynumber = resultSet.getInt("socialsecuritynumber");
+                String gender = resultSet.getString("gender");
+                String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
+                int phoneNumber = resultSet.getInt("phonenumber");
+                int balance = resultSet.getInt("balance");
 
-                User user = new User(id, username, password);
+                User user = new User(id, name, lastName, socialsecuritynumber, gender, userName, password, phoneNumber, balance);
                 return user;
-
         }
 
     }catch (Exception exception){

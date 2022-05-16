@@ -120,10 +120,11 @@ public class LoginMenu {
                             "\n" + "SSN: " + user.getSocialSecurityNumber() +
                             "\n" + "Gender: " + user.getGender() +
                             "\n" + "Phonenumber: " + user.getPhoneNumber() +
-                            "\n" + "Balance: " + user.getBalance());
+                            "\n" + "Balance: " + user.getBalance() +
+                            "\n");
                     break;
                 case 0:
-                    System.out.println("Redirecting to main menu...");
+                    System.out.println("Redirecting to main menu..." + "\n");
                     break;
             }
         }

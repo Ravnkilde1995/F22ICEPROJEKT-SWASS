@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserMenu {
 
     static UserRepo userRepo;
+    static User user;
 
     public static void UserMenu(Scanner input, ArrayList<User> users, ArrayList<Transaction> transactions) {
         int answer = 1;
@@ -22,13 +23,13 @@ public class UserMenu {
 
             switch (answer) {
                 case 1:
-                    showBalance(users);
+                    showBalance(input);
                     break;
                 case 2:
-                    withdrawMoney(input, users);
+                    withdrawMoney(input);
                     break;
                 case 3:
-                    addMoney(input, users);
+                    addDeposit(input);
                     break;
                 case 4:
                     showTransactions(users, transactions);
@@ -40,16 +41,50 @@ public class UserMenu {
         }
     }
 
-    public static void showBalance(ArrayList<User> users) {
+    public static void showBalance(Scanner input) {
+        System.out.println("Type in your username: ");
+        String username = input.next();
 
+        UserRepo userRepo = new UserRepo();
+        User user = UserRepo.getUserByUsername(username);
+
+        System.out.println("Total balance: " + "\n" + user.getBalance() + "\n");
     }
 
-    public static void withdrawMoney(Scanner input, ArrayList<User> users) {
+    public static void withdrawMoney(Scanner input) {
+        System.out.println("Type in your username: ");
+        String username = input.next();
+        System.out.println("Type in how much money you want to withdraw: ");
+        int amount = input.nextInt();
 
+        UserRepo userRepo = new UserRepo();
+        User user1 = UserRepo.getUserByUsername(username);
+
+        int balance=user1.balance-amount;
+
+        if(balance>=0) {
+            userRepo.update(username, balance);
+            System.out.println("Withdrawing money from the account..." + "\n");
+        }
+        else {
+            System.out.println("You cant withdraw money from the account" + "\n");
+        }
     }
 
-    public static void addMoney(Scanner input, ArrayList<User> users) {
+    public static void addDeposit(Scanner input) {
+        System.out.println("Type in your username: ");
+        String username = input.next();
+        System.out.println("Type in how much money you want to deposit: ");
+        int amount = input.nextInt();
 
+        UserRepo userRepo = new UserRepo();
+        User user1 = UserRepo.getUserByUsername(username);
+
+        int balance=user1.balance+amount;
+
+        userRepo.update(username, balance);
+
+        System.out.println("Depositing money to the account..." + "\n");
     }
 
     public static void showTransactions(ArrayList<User> users, ArrayList<Transaction> transactions) {

@@ -14,7 +14,7 @@ public class TransactionRepo implements Repo<Transaction> {
     }
 
     @Override
-    public void update(Transaction transaction, int id) {
+    public void update(String username, int balance) {
 
     }
 
