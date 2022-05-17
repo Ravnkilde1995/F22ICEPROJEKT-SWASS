@@ -34,7 +34,7 @@ public class UserMenu {
                     addDeposit(input);
                     break;
                 case 4:
-                    showTransactions();
+                    showTransactions(input);
                     break;
                 case 0:
                     System.out.println("Returning to the main menu \n");
@@ -89,7 +89,14 @@ public class UserMenu {
         System.out.println("Depositing money to the account..." + "\n");
     }
 
-    public static void showTransactions() {
+    public static void showTransactions(Scanner input) {
+        System.out.println("type in your username: ");
+        String username = input.next();
 
+
+        TransactionRepo transactionRepo = new TransactionRepo();
+
+        Transaction transactions = TransactionRepo.getTransactionsByUserName(username);
+        System.out.println(transactions);
     }
 }

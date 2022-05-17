@@ -25,6 +25,15 @@ public class Transaction {
         this.reciever = reciever;
     }
 
+    public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
+        this.transactionID = transactionID;
+        this.date1 = date1;
+        this.amount = amount;
+        this.sender = sender;
+        this.reciever = reciever;
+
+    }
+
     // Methods
     //***********************
 
