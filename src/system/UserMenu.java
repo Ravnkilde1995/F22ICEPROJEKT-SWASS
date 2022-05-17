@@ -7,7 +7,7 @@ public class UserMenu {
     static UserRepo userRepo;
     static User user;
 
-    public static void UserMenu(Scanner input, ArrayList<User> users, ArrayList<Transaction> transactions) {
+    public static void UserMenu(Scanner input) {
         int answer = 1;
 
         while (answer != 0) {
@@ -34,7 +34,7 @@ public class UserMenu {
                     addDeposit(input);
                     break;
                 case 4:
-                    showTransactions(users, transactions);
+                    showTransactions();
                     break;
                 case 0:
                     System.out.println("Returning to the main menu \n");
@@ -50,7 +50,7 @@ public class UserMenu {
         UserRepo userRepo = new UserRepo();
         User user = UserRepo.getUserByUsername(username);
 
-        System.out.println("Total balance: " + "\n" + user.getBalance() + "\n");
+        System.out.println("Total balance: " + "\n" + user.getBalance() + " DKK" + "\n");
     }
 
     public static void withdrawMoney(Scanner input) {
@@ -89,7 +89,7 @@ public class UserMenu {
         System.out.println("Depositing money to the account..." + "\n");
     }
 
-    public static void showTransactions(ArrayList<User> users, ArrayList<Transaction> transactions) {
+    public static void showTransactions() {
 
     }
 }

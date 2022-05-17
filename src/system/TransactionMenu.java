@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import static system.DBConnection.connection;
@@ -12,7 +13,7 @@ public class TransactionMenu {
 
     static TransactionRepo transactionRepo;
 
-    public static void TransactionMenu(Scanner input, ArrayList<Transaction> transactions, ArrayList<User> users) {
+    public static void TransactionMenu(Scanner input) {
 
         int answer = 1;
 
@@ -46,6 +47,7 @@ public class TransactionMenu {
     public static void searchForUser (Scanner input){
         System.out.println("Search for a user");
         String searchForAUser = input.next();
+
         String sql = "SELECT * FROM users WHERE name LIKE " + "'%" + searchForAUser + "%'";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -54,7 +56,8 @@ public class TransactionMenu {
                 String firstname = rs.getString("name");
                 String lastname = rs.getString("lastname");
 
-                System.out.println(firstname + " " + lastname);
+                String user = firstname + " " + lastname;
+                System.out.println(user);
             }
 
         } catch (SQLException e) {
@@ -69,8 +72,7 @@ public class TransactionMenu {
         int ID = input.nextInt();
         System.out.println("Type in the amount of money you want to transfer: ");
         int amount = input.nextInt();
-        System.out.println("Type in the date of the transaction: ");
-        int date = input.nextInt();
+        Date date = new Date();
 
         UserRepo userRepo = new UserRepo();
         User sender = UserRepo.getUserByUsername(username);
@@ -79,7 +81,7 @@ public class TransactionMenu {
         int recieverAmount = reciever.balance+amount;
         int senderAmount = sender.balance-amount;
 
-        if(sender.getBalance()>=0) {
+        if(sender.getBalance()-amount>=0) {
             userRepo.update(username, senderAmount);
             userRepo.update(reciever.getUsername(), recieverAmount);
 

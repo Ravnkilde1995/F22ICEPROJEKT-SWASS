@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public interface Repo <T> {
 
-
     ArrayList<T> readAll();
 
     void create (T t);

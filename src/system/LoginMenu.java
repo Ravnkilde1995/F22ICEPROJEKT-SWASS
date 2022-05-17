@@ -9,7 +9,7 @@ public class LoginMenu {
     static String username;
     static int answer;
 
-    public static void LoginMenu(Scanner input, ArrayList<User> users) {
+    public static void LoginMenu(Scanner input) {
 
 
         answer = 1;
@@ -18,13 +18,11 @@ public class LoginMenu {
 
             // Reference https://localcoder.org/java-print-in-bold
 
-            String textInBold = "Login menu \n";
-            System.out.print("\033[0;1m" + textInBold + "\n");
+            System.out.print("\033[0;1m" + "Login menu" + "\n" + "\n");
             System.out.println("Select your options");
             System.out.println("-------------------------\n");
             System.out.println("Press '1' to login ");
             System.out.println("Press '2' to create a new user ");
-            System.out.println("Press '0' to go to main menu ");
 
 
             answer = input.nextInt();
@@ -35,9 +33,6 @@ public class LoginMenu {
                     break;
                 case 2:
                     create(input);
-                    break;
-                case 0:
-                    System.out.println("Redirecting to main menu...\n");
                     break;
             }
         }
@@ -55,11 +50,11 @@ public class LoginMenu {
 
             System.out.print("Password: ");
             String passwordInput = input.next();
+            System.out.println("\n");
 
             User user = UserRepo.getUserByUsername(usernameInput);
 
             loggedIn = validateLogin(input, user, passwordInput);
-
         }
 
         System.out.println("you are logged in as " + username + "\n");
@@ -93,7 +88,7 @@ public class LoginMenu {
         System.out.println("insert last name: ");
         String lastname = input.next();
         System.out.println("insert social security number: ");
-        int socalSecurityNumber = input.nextInt();
+        int socialSecurityNumber = input.nextInt();
         System.out.println("insert your gender: ");
         String gender = input.next();
         System.out.println("insert username: ");
@@ -103,8 +98,8 @@ public class LoginMenu {
         System.out.println("insert your phone number: ");
         int phoneNumber = input.nextInt();
 
-        User user = new User(firstname, lastname, socalSecurityNumber, gender, userName, password, phoneNumber);
-        System.out.println(user);
+        User user = new User(firstname, lastname, socialSecurityNumber, gender, userName, password, phoneNumber);
+        System.out.println("\n You have succesfully created a user. Continue to login \n");
         UserRepo userRepo = new UserRepo();
         userRepo.create(user);
     }
@@ -115,7 +110,8 @@ public class LoginMenu {
 
         while (answer != 0) {
             System.out.println("Press 1 to show personal page");
-            System.out.println("Press 0 to go to main menu");
+            System.out.println("Press 2 to go to main menu");
+            System.out.println("Press 0 to logout");
 
             answer = input.nextInt();
 
@@ -126,11 +122,16 @@ public class LoginMenu {
                             "\n" + "SSN: " + user.getSocialSecurityNumber() +
                             "\n" + "Gender: " + user.getGender() +
                             "\n" + "Phonenumber: " + user.getPhoneNumber() +
-                            "\n" + "Balance: " + user.getBalance() +
+                            "\n" + "Balance: " + user.getBalance() + " DKK" +
                             "\n");
                     break;
-                case 0:
+                case 2:
                     System.out.println("Redirecting to main menu..." + "\n");
+                    MainMenu.MainMenu(input);
+                    break;
+                case 0:
+                    System.out.println("Logging out \n");
+                    LoginMenu(input);
                     break;
             }
         }

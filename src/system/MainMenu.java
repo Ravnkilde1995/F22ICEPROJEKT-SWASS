@@ -12,7 +12,7 @@ public class MainMenu {
     static TransactionRepo transactionRepo;
 
 
-    public static void MainMenu(Scanner input, ArrayList<Transaction> transactions, ArrayList<User> users) {
+    public static void MainMenu(Scanner input) {
         int answer = 1;
 
         while (answer != 0) {
@@ -21,20 +21,20 @@ public class MainMenu {
             System.out.println("------------------------- \n");
             System.out.println("Press '1' to show user menu");
             System.out.println("Press '2' to show transaction menu");
-            System.out.println("Press '0' to terminate program");
+            System.out.println("Press '0' to return to login menu");
 
 
             answer = input.nextInt();
 
             switch (answer) {
                 case 1:
-                    UserMenu.UserMenu(input, users, transactions);
+                    UserMenu.UserMenu(input);
                     break;
                 case 2:
-                    TransactionMenu.TransactionMenu(input, transactions, users);
+                    TransactionMenu.TransactionMenu(input);
                     break;
                 case 0:
-                    System.out.println("Terminating program ... \n");
+                    System.out.println("Going back to login menu... \n");
                     break;
             }
         }

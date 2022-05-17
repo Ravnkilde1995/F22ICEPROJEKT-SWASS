@@ -1,5 +1,7 @@
 package system;
 
+import java.util.Date;
+
 public class Transaction {
     //Fields
     //***********************
@@ -9,19 +11,13 @@ public class Transaction {
     int amount;
     String sender;
     int reciever;
+    Date currentDate = new Date();
+    String date1 = String.valueOf(currentDate);
 
     // Constructor
     //***********************
 
-    public Transaction(int transactionID, int date, int amount, String sender, int reciever) {
-        this.transactionID = transactionID;
-        this.date = date;
-        this.amount = amount;
-        this.sender = sender;
-        this.reciever = reciever;
-    }
-
-    public Transaction(int date, int amount, String sender, int reciever) {
+    public Transaction(Date currentDate, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
         this.date = date;
         this.amount = amount;
@@ -32,45 +28,22 @@ public class Transaction {
     // Methods
     //***********************
 
-    public int getTransactionID() {
-        return transactionID;
-    }
-
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
-    }
-
-    public int getDate() {
-        return date;
-    }
-
-    public void setDate(int date) {
-        this.date = date;
+    public String getDate1() {
+        return date1;
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public String getSender() {
         return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
     }
 
     public int getReciever() {
         return reciever;
     }
 
-    public void setReciever(int reciever) {
-        this.reciever = reciever;
-    }
 
     @Override
     public String toString() {

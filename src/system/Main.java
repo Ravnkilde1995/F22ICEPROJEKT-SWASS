@@ -1,7 +1,9 @@
 package system;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -19,7 +21,9 @@ public class Main {
         UserMenu.userRepo = new UserRepo();
         //user = UserMenu.userRepo.readAll();
 
-        LoginMenu.LoginMenu(input, users);
-        MainMenu.MainMenu(input, transactions, users);
+
+        LoginMenu.LoginMenu(input);
+        MainMenu.MainMenu(input);
+
     }
 }
