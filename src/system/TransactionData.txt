@@ -1,0 +1,1 @@
+TransactionID: 0Date: Wed May 18 15:11:27 CEST 2022Amount: 10Sender: NatasjaNReciever: 1

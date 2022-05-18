@@ -21,5 +21,6 @@ public class Main {
         LoginMenu.LoginMenu(input, transactions);
         MainMenu.MainMenu(input, transactions);
 
+        UserMenu.saveData(transactions);
     }
 }

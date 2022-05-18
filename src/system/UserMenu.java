@@ -1,6 +1,11 @@
 package system;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static system.Transaction.transactionID;
+
 
 public class UserMenu {
 
@@ -94,16 +99,33 @@ public class UserMenu {
         System.out.println("type in your username: ");
         String username = input.next();
 
-        for (Transaction t:transactions) {
+        for (Transaction t: transactions) {
 
             for(int i=0; i < transactions.size();i++){
-
-                t.get
+                transactionID = transactionID+=i;
             }
 
             if(username.equals(t.getSender())){
                 System.out.println(t);
             }
+        }
+    }
+
+    public static void saveData(ArrayList<Transaction> transactions) {
+        String data = "";
+        for(Transaction t: transactions) {
+            data+= "TransactionID: " + transactionID + "Date: " + t.getDate1() +
+                    "Amount: " + t.getAmount() + "Sender: " + t.getSender() +
+                    "Reciever: " + t.getReciever();
+        }
+
+        try {
+            FileWriter output = new FileWriter("src/system/TransactionData.txt");
+            output.write(data);
+            output.close();
+        }
+        catch (IOException exception) {
+
         }
     }
 }

@@ -8,7 +8,7 @@ public class Transaction {
     //Fields
     //***********************
 
-    int transactionID;
+    static int transactionID;
     int date;
     int amount;
     String sender;
@@ -19,16 +19,7 @@ public class Transaction {
     // Constructor
     //***********************
 
-    public Transaction(Date currentDate, int amount, String sender, int reciever) {
-        this.transactionID = transactionID;
-        this.date = date;
-        this.amount = amount;
-        this.sender = sender;
-        this.reciever = reciever;
-
-    }
-
-    public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
+    public Transaction(String date1, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
         this.date1 = date1;
         this.amount = amount;
@@ -36,6 +27,16 @@ public class Transaction {
         this.reciever = reciever;
 
     }
+
+    /*
+    public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
+        this.transactionID = transactionID;
+        this.date1 = date1;
+        this.amount = amount;
+        this.sender = sender;
+        this.reciever = reciever;
+
+    }*/
 
     // Methods
     //***********************
@@ -56,12 +57,16 @@ public class Transaction {
         return reciever;
     }
 
+    public int getTransactionID() {
+        return transactionID;
+    }
+
 
     @Override
     public String toString() {
         return "Transaction: " +
                 "transactionID: " + transactionID +
-                ", date: " + date +
+                ", date: " + date1 +
                 ", amount: " + amount + " DKK" +
                 ", sender: " + sender +
         ", reciever: " + reciever  +

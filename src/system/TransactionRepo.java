@@ -30,6 +30,8 @@ public class TransactionRepo implements Repo<Transaction> {
             e.printStackTrace();
         }
     }
+
+    /*
     static Transaction getTransactionsByUserName (String userName){
 
         try{
@@ -54,5 +56,5 @@ public class TransactionRepo implements Repo<Transaction> {
             exception.printStackTrace();
         }
         return null;
-    }
+    } */
 }

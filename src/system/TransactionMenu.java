@@ -76,6 +76,7 @@ public class TransactionMenu {
         System.out.println("Type in the amount of money you want to transfer: ");
         int amount = input.nextInt();
         Date date = new Date();
+        String date1 = String.valueOf(date);
 
         UserRepo userRepo = new UserRepo();
         User sender = UserRepo.getUserByUsername(username);
@@ -89,7 +90,7 @@ public class TransactionMenu {
             userRepo.update(reciever.getUsername(), recieverAmount);
 
             TransactionRepo transactionRepo = new TransactionRepo();
-            Transaction allTransactions = new Transaction(date, amount, username, ID);
+            Transaction allTransactions = new Transaction(date1, amount, username, ID);
 
             transactionRepo.create(allTransactions);
             transactions.add(allTransactions);

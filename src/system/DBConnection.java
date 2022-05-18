@@ -12,7 +12,7 @@ public class DBConnection {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/SWASS", "root", "ravn123");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/ICE", "root", "pllghp1d");
 
         } catch (Exception exception) {
 

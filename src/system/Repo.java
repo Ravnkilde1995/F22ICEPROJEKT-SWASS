@@ -7,5 +7,4 @@ public interface Repo <T> {
 
     void update (String username, int balance);
 
-
 }
