@@ -3,6 +3,8 @@ package system;
 import java.util.Date;
 
 public class Transaction {
+
+
     //Fields
     //***********************
 
@@ -23,6 +25,7 @@ public class Transaction {
         this.amount = amount;
         this.sender = sender;
         this.reciever = reciever;
+
     }
 
     public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
@@ -56,12 +59,12 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "transactionID=" + transactionID +
-                ", date=" + date +
-                ", amount=" + amount +
-                ", sender='" + sender +
-        ", reciever='" + reciever  +
-        '}';
+        return "Transaction: " +
+                "transactionID: " + transactionID +
+                ", date: " + date +
+                ", amount: " + amount + " DKK" +
+                ", sender: " + sender +
+        ", reciever: " + reciever  +
+        '\n';
     }
 }

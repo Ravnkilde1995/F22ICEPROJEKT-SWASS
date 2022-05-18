@@ -7,7 +7,7 @@ public class UserMenu {
     static UserRepo userRepo;
     static User user;
 
-    public static void UserMenu(Scanner input) {
+    public static void UserMenu(Scanner input, ArrayList<Transaction> transactions) {
         int answer = 1;
 
         while (answer != 0) {
@@ -34,7 +34,7 @@ public class UserMenu {
                     addDeposit(input);
                     break;
                 case 4:
-                    showTransactions(input);
+                    showTransactions(input, transactions);
                     break;
                 case 0:
                     System.out.println("Returning to the main menu \n");
@@ -89,14 +89,21 @@ public class UserMenu {
         System.out.println("Depositing money to the account..." + "\n");
     }
 
-    public static void showTransactions(Scanner input) {
+    public static void showTransactions(Scanner input, ArrayList<Transaction> transactions) {
+
         System.out.println("type in your username: ");
         String username = input.next();
 
+        for (Transaction t:transactions) {
 
-        TransactionRepo transactionRepo = new TransactionRepo();
+            for(int i=0; i < transactions.size();i++){
 
-        Transaction transactions = TransactionRepo.getTransactionsByUserName(username);
-        System.out.println(transactions);
+                t.get
+            }
+
+            if(username.equals(t.getSender())){
+                System.out.println(t);
+            }
+        }
     }
 }

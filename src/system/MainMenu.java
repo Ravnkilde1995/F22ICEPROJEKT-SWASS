@@ -5,14 +5,9 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    static ArrayList <UserMenu> userMenu;
-    //static ArrayList <LoginMenu> loginMenu;
-    static ArrayList <TransactionMenu> transactionMenu;
-    static UserRepo userRepo;
-    static TransactionRepo transactionRepo;
 
+    public static void MainMenu(Scanner input, ArrayList<Transaction> transactions) {
 
-    public static void MainMenu(Scanner input) {
         int answer = 1;
 
         while (answer != 0) {
@@ -28,10 +23,10 @@ public class MainMenu {
 
             switch (answer) {
                 case 1:
-                    UserMenu.UserMenu(input);
+                    UserMenu.UserMenu(input, transactions);
                     break;
                 case 2:
-                    TransactionMenu.TransactionMenu(input);
+                    TransactionMenu.TransactionMenu(input, transactions);
                     break;
                 case 0:
                     System.out.println("Going back to login menu... \n");

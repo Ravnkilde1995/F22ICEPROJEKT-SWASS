@@ -12,11 +12,6 @@ public class UserRepo implements Repo<User>{
     static Connection connection = DBConnection.connection;
 
     @Override
-    public ArrayList<User> readAll() {
-        return null;
-    }
-
-    @Override
     public void create(User user) {
 
         try{
@@ -42,18 +37,16 @@ public class UserRepo implements Repo<User>{
      public void update(String username, int balance) {
 
             String sql = "UPDATE users SET balance = " + balance + " WHERE username = + " + "'" + username + "'";
+
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
     }
 
-    @Override
-    public void delete(int id) {
 
-    }
 
     static User getUserByUsername(String username) {
 
@@ -82,6 +75,7 @@ public class UserRepo implements Repo<User>{
     }catch (Exception exception){
             exception.printStackTrace();
         }
+
         return null;
 
     }

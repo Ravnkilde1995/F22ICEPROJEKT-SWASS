@@ -1,5 +1,6 @@
 package system;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class TransactionMenu {
 
     static TransactionRepo transactionRepo;
 
-    public static void TransactionMenu(Scanner input) {
+    public static void TransactionMenu(Scanner input, ArrayList<Transaction> transactions) {
 
         int answer = 1;
 
@@ -31,7 +32,7 @@ public class TransactionMenu {
                     searchForUser(input);
                     break;
                 case 2:
-                    commitTransactions(input);
+                    commitTransactions(input, transactions);
                     break;
                 case 0:
                     System.out.println("returning to main menu... \n");
@@ -42,9 +43,10 @@ public class TransactionMenu {
 
 
     // Methods
-    //***
+    //***********************
 
     public static void searchForUser (Scanner input){
+
         System.out.println("Search for a user");
         String searchForAUser = input.next();
 
@@ -65,7 +67,8 @@ public class TransactionMenu {
         }
     }
 
-    public static void commitTransactions(Scanner input){
+    public static void commitTransactions(Scanner input, ArrayList<Transaction> transactions){
+
         System.out.println("Type in your username: ");
         String username = input.next();
         System.out.println("Type in the ID of the user you want to transfer money to");
@@ -86,8 +89,10 @@ public class TransactionMenu {
             userRepo.update(reciever.getUsername(), recieverAmount);
 
             TransactionRepo transactionRepo = new TransactionRepo();
-            Transaction transactions = new Transaction(date, amount, username, ID);
-            transactionRepo.create(transactions);
+            Transaction allTransactions = new Transaction(date, amount, username, ID);
+
+            transactionRepo.create(allTransactions);
+            transactions.add(allTransactions);
         }
         else {
             System.out.println("You dont have enought money to transfer");

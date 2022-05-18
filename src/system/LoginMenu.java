@@ -9,14 +9,12 @@ public class LoginMenu {
     static String username;
     static int answer;
 
-    public static void LoginMenu(Scanner input) {
+    public static void LoginMenu(Scanner input, ArrayList<Transaction> transactions) {
 
 
         answer = 1;
 
         while (answer != 0) {
-
-            // Reference https://localcoder.org/java-print-in-bold
 
             System.out.print("\033[0;1m" + "Login menu" + "\n" + "\n");
             System.out.println("Select your options");
@@ -29,7 +27,7 @@ public class LoginMenu {
 
             switch (answer) {
                 case 1:
-                    login(input);
+                    login(input, transactions);
                     break;
                 case 2:
                     create(input);
@@ -38,23 +36,21 @@ public class LoginMenu {
         }
     }
 
-    static void login(Scanner input) {
+    static void login(Scanner input, ArrayList<Transaction> transactions) {
 
         boolean loggedIn = false;
 
         while(!loggedIn) {
             System.out.println("LOG IN");
-
             System.out.print("Username: ");
             String usernameInput = input.next();
-
             System.out.print("Password: ");
             String passwordInput = input.next();
             System.out.println("\n");
 
             User user = UserRepo.getUserByUsername(usernameInput);
 
-            loggedIn = validateLogin(input, user, passwordInput);
+            loggedIn = validateLogin(input, user, passwordInput, transactions);
         }
 
         System.out.println("you are logged in as " + username + "\n");
@@ -62,12 +58,13 @@ public class LoginMenu {
 
     }
 
-    static boolean validateLogin(Scanner input, User user, String passwordInput){
+    static boolean validateLogin(Scanner input, User user, String passwordInput, ArrayList<Transaction> transactions){
+
         if(user != null){
             if(user.password.equals(passwordInput)){
                 username = user.username;
                 answer = 0;
-                myPageMenu(input, user);
+                myPageMenu(input, user, transactions);
                 return true;
             }else{
                 System.out.println("\n"+"Wrong user name or password");
@@ -82,7 +79,6 @@ public class LoginMenu {
     public static void create(Scanner input) {
 
         System.out.println("Creating new user: "+"\n");
-
         System.out.println("insert first name: ");
         String firstname = input.next();
         System.out.println("insert last name: ");
@@ -105,7 +101,8 @@ public class LoginMenu {
     }
 
 
-    public static void myPageMenu(Scanner input, User user) {
+    public static void myPageMenu(Scanner input, User user, ArrayList<Transaction> transactions) {
+
         int answer = 1;
 
         while (answer != 0) {
@@ -127,11 +124,11 @@ public class LoginMenu {
                     break;
                 case 2:
                     System.out.println("Redirecting to main menu..." + "\n");
-                    MainMenu.MainMenu(input);
+                    MainMenu.MainMenu(input, transactions);
                     break;
                 case 0:
                     System.out.println("Logging out \n");
-                    LoginMenu(input);
+                    LoginMenu(input, transactions);
                     break;
             }
         }
