@@ -12,7 +12,7 @@ public class UserMenu {
 
     static UserRepo userRepo;
 
-    public static void UserMenu(Scanner input) {
+    public static void userMenu(Scanner input) {
 
         int answer = 1;
 
@@ -82,8 +82,8 @@ public class UserMenu {
 
         System.out.println("Type in your username: ");
         String username = input.next();
-        System.out.println("Type in how much money you want to deposit: ");
 
+        System.out.println("Type in how much money you want to deposit: ");
         int amount = input.nextInt();
 
         UserRepo userRepo = new UserRepo();
@@ -103,9 +103,8 @@ public class UserMenu {
 
         for(Transaction t: transactions) {
 
-            data+= "TransactionID: " + transactionID + "Date: " + t.getDate1() +
-                    "Amount: " + t.getAmount() + "Sender: " + t.getSender() +
-                    "Reciever: " + t.getReciever();
+            data+=   transactionID + "," + t.getDate1() + "," +  t.getAmount() + "," +  t.getSender() +"," + t.getReciever() + ",";
+
         }
 
         try {
@@ -129,19 +128,21 @@ public class UserMenu {
                 String line = scanner.nextLine();
                 if(line.length()>0){
                     Scanner lineScanner = new Scanner(line);
-                    lineScanner.next();
+                    lineScanner.useDelimiter(",");
+
                     int transactionID = lineScanner.nextInt();
-                    lineScanner.nextInt();
+
                     String date = lineScanner.next();
-                    lineScanner.next();
+
                     int amount = lineScanner.nextInt();
-                    lineScanner.nextInt();
+
                     String sender = lineScanner.next();
-                    lineScanner.next();
+
                     int reviever = lineScanner.nextInt();
-                    lineScanner.nextInt();
+
                     Transaction loadedTransactions = new Transaction(transactionID, date, amount, sender, reviever);
                     transactions.add(loadedTransactions);
+                    System.out.println(transactions);
 
                 }
             }

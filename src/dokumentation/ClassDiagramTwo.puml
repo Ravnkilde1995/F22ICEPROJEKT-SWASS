@@ -33,18 +33,17 @@ ArrayList<Transaction> transactions
 + DBConnector.createConnection()
 + UserMenu.loadData()
 + LoginMenu.LoginMenu(input, transactions)
-+ MainMenu.MainMenu(input, transactions)
 + UserMenu.saveData(transactions)
 }
 
 class MainMenu {
-+ MainMenu(Scanner input, ArrayList<Transaction> transactions)
++ mainMenu(Scanner input, ArrayList<Transaction> transactions)
 }
 
 class UserMenu{
 static UserRepo userRepo
 
-+ UserMenu(Scanner input)
++ userMenu(Scanner input)
 + showBalance(Scanner input)
 + withdrawMoney(Scanner input)
 + addDeposit(Scanner input)

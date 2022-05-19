@@ -30,31 +30,4 @@ public class TransactionRepo implements Repo<Transaction> {
             e.printStackTrace();
         }
     }
-
-    /*
-    static Transaction getTransactionsByUserName (String userName){
-
-        try{
-            String sql = "SELECT * FROM transaction WHERE reciever = " + userName + "OR sender = " + userName;
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if(resultSet.next()){
-                int ID = resultSet.getInt("transactionID");
-                String date1 = resultSet.getString("date");
-                int amount = resultSet.getInt("amount");
-                String sender = resultSet.getString("sender");
-                int reciever = resultSet.getInt("reciever");
-
-                Transaction transaction = new Transaction(ID, date1, amount, sender, reciever);
-                return transaction;
-            }
-
-        }
-
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        return null;
-    } */
 }

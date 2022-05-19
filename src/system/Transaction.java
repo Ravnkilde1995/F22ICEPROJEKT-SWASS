@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Transaction {
 
-
     //Fields
     //***********************
 
@@ -26,7 +25,6 @@ public class Transaction {
         this.reciever = reciever;
 
     }
-
 
     public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
@@ -54,10 +52,6 @@ public class Transaction {
 
     public int getReciever() {
         return reciever;
-    }
-
-    public int getTransactionID() {
-        return transactionID;
     }
 
 

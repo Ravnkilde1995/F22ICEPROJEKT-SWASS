@@ -25,24 +25,31 @@ public class UserRepo implements Repo<User>{
             preparedStatement.setString(5, user.getUsername());
             preparedStatement.setString(6, user.getPassword());
             preparedStatement.setInt(7, user.getPhoneNumber());
-
             preparedStatement.executeUpdate();
         }
         catch(Exception e){
+
             e.printStackTrace();
+
         }
     }
 
     @Override
      public void update(String username, int balance) {
 
-            String sql = "UPDATE users SET balance = " + balance + " WHERE username = + " + "'" + username + "'";
-
             try {
+
+                String sql = "UPDATE users Set balance = ? WHERE username = ?";
+
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, balance);
+                preparedStatement.setString(2, username);
                 preparedStatement.executeUpdate();
+
             } catch (SQLException exception) {
+
                 exception.printStackTrace();
+
             }
     }
 

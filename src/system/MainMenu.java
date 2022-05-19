@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainMenu {
 
 
-    public static void MainMenu(Scanner input, ArrayList<Transaction> transactions) {
+    public static void mainMenu(Scanner input, ArrayList<Transaction> transactions) {
 
         int answer = 1;
 
@@ -23,7 +23,7 @@ public class MainMenu {
 
             switch (answer) {
                 case 1:
-                    UserMenu.UserMenu(input);
+                    UserMenu.userMenu(input);
                     break;
                 case 2:
                     TransactionMenu.TransactionMenu(input, transactions);

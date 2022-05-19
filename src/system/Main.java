@@ -18,10 +18,9 @@ public class Main {
         TransactionMenu.transactionRepo = new TransactionRepo();
         UserMenu.userRepo = new UserRepo();
 
-        UserMenu.loadData();
+        transactions = UserMenu.loadData();
 
-        LoginMenu.LoginMenu(input, transactions);
-        MainMenu.MainMenu(input, transactions);
+        LoginMenu.loginMenu(input, transactions);
 
         UserMenu.saveData(transactions);
     }

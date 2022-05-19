@@ -121,6 +121,5 @@ public class TransactionMenu {
                 System.out.println(t);
             }
         }
-
     }
 }
