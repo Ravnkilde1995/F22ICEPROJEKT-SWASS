@@ -58,8 +58,7 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction: " +
-                "transactionID: " + transactionID +
-                ", date: " + date1 +
+                "date: " + date1 +
                 ", amount: " + amount + " DKK" +
                 ", sender: " + sender +
         ", reciever: " + reciever  +

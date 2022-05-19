@@ -103,7 +103,7 @@ public class UserMenu {
 
         for(Transaction t: transactions) {
 
-            data+=   transactionID + "," + t.getDate1() + "," +  t.getAmount() + "," +  t.getSender() +"," + t.getReciever() + ",";
+            data+=   t.getDate1() + "," +  t.getAmount() + "," +  t.getSender() +"," + t.getReciever() + ",";
 
         }
 
@@ -130,8 +130,6 @@ public class UserMenu {
                     Scanner lineScanner = new Scanner(line);
                     lineScanner.useDelimiter(",");
 
-                    int transactionID = lineScanner.nextInt();
-
                     String date = lineScanner.next();
 
                     int amount = lineScanner.nextInt();
@@ -140,7 +138,7 @@ public class UserMenu {
 
                     int reviever = lineScanner.nextInt();
 
-                    Transaction loadedTransactions = new Transaction(transactionID, date, amount, sender, reviever);
+                    Transaction loadedTransactions = new Transaction(date, amount, sender, reviever);
                     transactions.add(loadedTransactions);
                     System.out.println(transactions);
 
