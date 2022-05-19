@@ -23,7 +23,7 @@ public class MainMenu {
 
             switch (answer) {
                 case 1:
-                    UserMenu.UserMenu(input, transactions);
+                    UserMenu.UserMenu(input);
                     break;
                 case 2:
                     TransactionMenu.TransactionMenu(input, transactions);

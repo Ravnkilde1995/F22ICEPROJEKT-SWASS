@@ -11,9 +11,8 @@ import static system.Transaction.transactionID;
 public class UserMenu {
 
     static UserRepo userRepo;
-    static User user;
 
-    public static void UserMenu(Scanner input, ArrayList<Transaction> transactions) {
+    public static void UserMenu(Scanner input) {
 
         int answer = 1;
 

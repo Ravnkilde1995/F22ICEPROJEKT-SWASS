@@ -9,7 +9,6 @@ public class Transaction {
     //***********************
 
     static int transactionID;
-    int date;
     int amount;
     String sender;
     int reciever;
