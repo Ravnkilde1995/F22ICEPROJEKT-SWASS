@@ -28,7 +28,7 @@ public class Transaction {
 
     }
 
-    /*
+
     public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
         this.date1 = date1;
@@ -36,7 +36,7 @@ public class Transaction {
         this.sender = sender;
         this.reciever = reciever;
 
-    }*/
+    }
 
     // Methods
     //***********************

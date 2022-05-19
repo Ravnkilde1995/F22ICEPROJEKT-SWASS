@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static system.DBConnection.connection;
+import static system.Transaction.transactionID;
 
 public class TransactionMenu {
 
@@ -24,6 +25,7 @@ public class TransactionMenu {
             System.out.println("-------------------------\n");
             System.out.println("Press '1' to search for a user...");
             System.out.println("Press '2' to make a transaction");
+            System.out.println("Press '3' to show recent transactions");
             System.out.println("Press '0' to return to main menu");
 
             answer = input.nextInt();
@@ -33,6 +35,9 @@ public class TransactionMenu {
                     break;
                 case 2:
                     commitTransactions(input, transactions);
+                    break;
+                case 3:
+                    showTransactions(input, transactions);
                     break;
                 case 0:
                     System.out.println("returning to main menu... \n");
@@ -85,6 +90,7 @@ public class TransactionMenu {
         int recieverAmount = reciever.balance+amount;
         int senderAmount = sender.balance-amount;
 
+
         if(sender.getBalance()-amount>=0) {
             userRepo.update(username, senderAmount);
             userRepo.update(reciever.getUsername(), recieverAmount);
@@ -98,5 +104,23 @@ public class TransactionMenu {
         else {
             System.out.println("You dont have enought money to transfer");
         }
+    }
+
+    public static void showTransactions(Scanner input, ArrayList<Transaction> transactions) {
+
+        System.out.println("type in your username: ");
+        String username = input.next();
+
+        for (Transaction t: transactions) {
+
+            for(int i=0; i < transactions.size();i++){
+                transactionID = transactionID+=i;
+            }
+
+            if(username.equals(t.getSender())){
+                System.out.println(t);
+            }
+        }
+
     }
 }

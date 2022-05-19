@@ -128,7 +128,7 @@ public class LoginMenu {
                     break;
                 case 0:
                     System.out.println("Logging out \n");
-                    //LoginMenu(input, transactions);
+                    System.exit(0);
                     break;
             }
         }

@@ -1,4 +1,5 @@
 package system;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class UserMenu {
     static User user;
 
     public static void UserMenu(Scanner input, ArrayList<Transaction> transactions) {
+
         int answer = 1;
 
         while (answer != 0) {
@@ -22,7 +24,6 @@ public class UserMenu {
             System.out.println("Press '1' to show balance");
             System.out.println("Press '2' to withdraw money");
             System.out.println("Press '3' to add money to an account");
-            System.out.println("Press '4' to show recent transactions");
             System.out.println("Press '0' to return to main menu");
 
 
@@ -38,9 +39,6 @@ public class UserMenu {
                 case 3:
                     addDeposit(input);
                     break;
-                case 4:
-                    showTransactions(input, transactions);
-                    break;
                 case 0:
                     System.out.println("Returning to the main menu \n");
                     break;
@@ -49,6 +47,7 @@ public class UserMenu {
     }
 
     public static void showBalance(Scanner input) {
+
         System.out.println("Type in your username: ");
         String username = input.next();
 
@@ -59,9 +58,11 @@ public class UserMenu {
     }
 
     public static void withdrawMoney(Scanner input) {
+
         System.out.println("Type in your username: ");
         String username = input.next();
         System.out.println("Type in how much money you want to withdraw: ");
+
         int amount = input.nextInt();
 
         UserRepo userRepo = new UserRepo();
@@ -79,9 +80,11 @@ public class UserMenu {
     }
 
     public static void addDeposit(Scanner input) {
+
         System.out.println("Type in your username: ");
         String username = input.next();
         System.out.println("Type in how much money you want to deposit: ");
+
         int amount = input.nextInt();
 
         UserRepo userRepo = new UserRepo();
@@ -94,26 +97,13 @@ public class UserMenu {
         System.out.println("Depositing money to the account..." + "\n");
     }
 
-    public static void showTransactions(Scanner input, ArrayList<Transaction> transactions) {
-
-        System.out.println("type in your username: ");
-        String username = input.next();
-
-        for (Transaction t: transactions) {
-
-            for(int i=0; i < transactions.size();i++){
-                transactionID = transactionID+=i;
-            }
-
-            if(username.equals(t.getSender())){
-                System.out.println(t);
-            }
-        }
-    }
 
     public static void saveData(ArrayList<Transaction> transactions) {
+
         String data = "";
+
         for(Transaction t: transactions) {
+
             data+= "TransactionID: " + transactionID + "Date: " + t.getDate1() +
                     "Amount: " + t.getAmount() + "Sender: " + t.getSender() +
                     "Reciever: " + t.getReciever();
@@ -127,5 +117,41 @@ public class UserMenu {
         catch (IOException exception) {
 
         }
+    }
+
+    public static ArrayList<Transaction> loadData(){
+
+        File text = new File("src/system/TransactionData.txt");
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        try{
+            Scanner scanner = new Scanner(text);
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if(line.length()>0){
+                    Scanner lineScanner = new Scanner(line);
+                    lineScanner.next();
+                    int transactionID = lineScanner.nextInt();
+                    lineScanner.nextInt();
+                    String date = lineScanner.next();
+                    lineScanner.next();
+                    int amount = lineScanner.nextInt();
+                    lineScanner.nextInt();
+                    String sender = lineScanner.next();
+                    lineScanner.next();
+                    int reviever = lineScanner.nextInt();
+                    lineScanner.nextInt();
+                    Transaction loadedTransactions = new Transaction(transactionID, date, amount, sender, reviever);
+                    transactions.add(loadedTransactions);
+
+                }
+            }
+
+        }catch (IOException exception) {
+
+        }
+
+        return transactions;
+
     }
 }
