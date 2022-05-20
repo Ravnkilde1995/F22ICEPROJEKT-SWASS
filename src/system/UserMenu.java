@@ -69,7 +69,7 @@ public class UserMenu {
         UserRepo userRepo = new UserRepo();
         User users = UserRepo.getUserByUsername(username);
 
-        int balance=users.balance-amount;
+        int balance=users.getBalance()-amount;
 
         if(balance>=0) {
             userRepo.update(username, balance);
@@ -93,7 +93,7 @@ public class UserMenu {
         UserRepo userRepo = new UserRepo();
         User users = UserRepo.getUserByUsername(username);
 
-        int balance=users.balance+amount;
+        int balance=users.getBalance()+amount;
 
         userRepo.update(username, balance);
 

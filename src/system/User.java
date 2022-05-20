@@ -5,15 +5,15 @@ public class User {
     //Fields
     //***********************
 
-    int userID;
-    String name;
-    String lastName;
-    int socialSecurityNumber;
-    String gender;
-    String username;
-    String password;
-    int phoneNumber;
-    int balance;
+    private int userID;
+    private String name;
+    private String lastName;
+    private int socialSecurityNumber;
+    private String gender;
+    private String username;
+    private String password;
+    private int phoneNumber;
+    private int balance;
 
     //Constructor
     //***********************

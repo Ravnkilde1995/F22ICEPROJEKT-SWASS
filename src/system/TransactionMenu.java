@@ -95,8 +95,8 @@ public class TransactionMenu {
         User sender = UserRepo.getUserByUsername(username);
         User reciever = UserRepo.getUserByID(ID);
 
-        int recieverAmount = reciever.balance+amount;
-        int senderAmount = sender.balance-amount;
+        int recieverAmount = reciever.getBalance()+amount;
+        int senderAmount = sender.getBalance()-amount;
 
 
         if(sender.getBalance()-amount>=0) {

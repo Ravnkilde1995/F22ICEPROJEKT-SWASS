@@ -8,11 +8,11 @@ public class Transaction {
     //***********************
 
     static int transactionID;
-    int amount;
-    String sender;
-    int reciever;
+    private int amount;
+    private String sender;
+    private int reciever;
     Date currentDate = new Date();
-    String date = String.valueOf(currentDate);
+    private String date = String.valueOf(currentDate);
 
     // Constructor
     //***********************

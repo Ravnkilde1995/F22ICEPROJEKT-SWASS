@@ -57,8 +57,8 @@ public class LoginMenu {
 
         if(user != null){
 
-            if(user.password.equals(passwordInput)){
-                username = user.username;
+            if(user.getPassword().equals(passwordInput)){
+                username = user.getUsername();
                 answer = 0;
                 myPageMenu(input, user, transactions);
                 return true;
