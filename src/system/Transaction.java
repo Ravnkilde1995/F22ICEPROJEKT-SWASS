@@ -12,23 +12,14 @@ public class Transaction {
     String sender;
     int reciever;
     Date currentDate = new Date();
-    String date1 = String.valueOf(currentDate);
+    String date = String.valueOf(currentDate);
 
     // Constructor
     //***********************
 
-    public Transaction(String date1, int amount, String sender, int reciever) {
+    public Transaction(String date, int amount, String sender, int reciever) {
         this.transactionID = transactionID;
-        this.date1 = date1;
-        this.amount = amount;
-        this.sender = sender;
-        this.reciever = reciever;
-
-    }
-
-    public Transaction(int transactionID, String date1, int amount, String sender, int reciever) {
-        this.transactionID = transactionID;
-        this.date1 = date1;
+        this.date = date;
         this.amount = amount;
         this.sender = sender;
         this.reciever = reciever;
@@ -39,7 +30,7 @@ public class Transaction {
     //***********************
 
     public String getDate1() {
-        return date1;
+        return date;
     }
 
     public int getAmount() {
@@ -58,10 +49,11 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction: " +
-                "date: " + date1 +
+                "date: " + date +
                 ", amount: " + amount + " DKK" +
                 ", sender: " + sender +
         ", reciever: " + reciever  +
         '\n';
+
     }
 }

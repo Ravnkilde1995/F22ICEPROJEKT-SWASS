@@ -1,16 +1,10 @@
 package system;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import static system.DBConnection.connection;
 
 public class TransactionRepo implements Repo<Transaction> {
 
-    @Override
-    public void update(String username, int balance) {
-
-    }
 
     @Override
     public void create(Transaction transactions) {
@@ -28,6 +22,7 @@ public class TransactionRepo implements Repo<Transaction> {
         }
         catch(Exception e){
             e.printStackTrace();
+
         }
     }
 }

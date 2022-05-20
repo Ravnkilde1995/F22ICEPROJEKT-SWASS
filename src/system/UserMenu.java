@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static system.Transaction.transactionID;
-
 
 public class UserMenu {
 
@@ -32,15 +30,19 @@ public class UserMenu {
                 case 1:
                     showBalance(input);
                     break;
+
                 case 2:
                     withdrawMoney(input);
                     break;
+
                 case 3:
                     addDeposit(input);
                     break;
+
                 case 0:
                     System.out.println("Returning to the main menu \n");
                     break;
+
             }
         }
     }
@@ -50,31 +52,33 @@ public class UserMenu {
         System.out.println("Type in your username: ");
         String username = input.next();
 
-        UserRepo userRepo = new UserRepo();
         User user = UserRepo.getUserByUsername(username);
 
         System.out.println("Total balance: " + "\n" + user.getBalance() + " DKK" + "\n");
+
     }
 
     public static void withdrawMoney(Scanner input) {
 
         System.out.println("Type in your username: ");
         String username = input.next();
-        System.out.println("Type in how much money you want to withdraw: ");
 
+        System.out.println("Type in how much money you want to withdraw: ");
         int amount = input.nextInt();
 
         UserRepo userRepo = new UserRepo();
-        User user1 = UserRepo.getUserByUsername(username);
+        User users = UserRepo.getUserByUsername(username);
 
-        int balance=user1.balance-amount;
+        int balance=users.balance-amount;
 
         if(balance>=0) {
             userRepo.update(username, balance);
             System.out.println("Withdrawing money from the account..." + "\n");
+
         }
         else {
             System.out.println("You cant withdraw money from the account" + "\n");
+
         }
     }
 
@@ -87,13 +91,14 @@ public class UserMenu {
         int amount = input.nextInt();
 
         UserRepo userRepo = new UserRepo();
-        User user1 = UserRepo.getUserByUsername(username);
+        User users = UserRepo.getUserByUsername(username);
 
-        int balance=user1.balance+amount;
+        int balance=users.balance+amount;
 
         userRepo.update(username, balance);
 
         System.out.println("Depositing money to the account..." + "\n");
+
     }
 
 
@@ -111,6 +116,7 @@ public class UserMenu {
             FileWriter output = new FileWriter("src/system/TransactionData.txt");
             output.write(data);
             output.close();
+
         }
         catch (IOException exception) {
 
@@ -124,23 +130,20 @@ public class UserMenu {
 
         try{
             Scanner scanner = new Scanner(text);
+
             while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if(line.length()>0){
+
+                if (line.length() > 0) {
                     Scanner lineScanner = new Scanner(line);
                     lineScanner.useDelimiter(",");
-
                     String date = lineScanner.next();
-
                     int amount = lineScanner.nextInt();
-
                     String sender = lineScanner.next();
-
                     int reviever = lineScanner.nextInt();
 
                     Transaction loadedTransactions = new Transaction(date, amount, sender, reviever);
                     transactions.add(loadedTransactions);
-                    System.out.println(transactions);
 
                 }
             }

@@ -1,6 +1,5 @@
 package system;
 
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,13 +8,12 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static system.DBConnection.connection;
-import static system.Transaction.transactionID;
 
 public class TransactionMenu {
 
     static TransactionRepo transactionRepo;
 
-    public static void TransactionMenu(Scanner input, ArrayList<Transaction> transactions) {
+    public static void transactionMenu(Scanner input, ArrayList<Transaction> transactions) {
 
         int answer = 1;
 
@@ -29,23 +27,26 @@ public class TransactionMenu {
             System.out.println("Press '0' to return to main menu");
 
             answer = input.nextInt();
+
             switch (answer) {
                 case 1:
                     searchForUser(input);
                     break;
+
                 case 2:
                     commitTransactions(input, transactions);
                     break;
+
                 case 3:
                     showTransactions(input, transactions);
                     break;
+
                 case 0:
                     System.out.println("returning to main menu... \n");
                     break;
             }
         }
     }
-
 
     // Methods
     //***********************
@@ -56,19 +57,23 @@ public class TransactionMenu {
         String searchForAUser = input.next();
 
         String sql = "SELECT * FROM users WHERE name LIKE " + "'%" + searchForAUser + "%'";
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
+
             while (rs.next()) {
                 String firstname = rs.getString("name");
                 String lastname = rs.getString("lastname");
 
                 String user = firstname + " " + lastname;
                 System.out.println(user);
+
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
     }
 
@@ -76,12 +81,15 @@ public class TransactionMenu {
 
         System.out.println("Type in your username: ");
         String username = input.next();
+
         System.out.println("Type in the ID of the user you want to transfer money to");
         int ID = input.nextInt();
+
         System.out.println("Type in the amount of money you want to transfer: ");
         int amount = input.nextInt();
+
         Date date = new Date();
-        String date1 = String.valueOf(date);
+        String currentDate = String.valueOf(date);
 
         UserRepo userRepo = new UserRepo();
         User sender = UserRepo.getUserByUsername(username);
@@ -96,13 +104,15 @@ public class TransactionMenu {
             userRepo.update(reciever.getUsername(), recieverAmount);
 
             TransactionRepo transactionRepo = new TransactionRepo();
-            Transaction allTransactions = new Transaction(date1, amount, username, ID);
+            Transaction allTransactions = new Transaction(currentDate, amount, username, ID);
 
             transactionRepo.create(allTransactions);
             transactions.add(allTransactions);
+
         }
         else {
             System.out.println("You dont have enought money to transfer");
+
         }
     }
 
@@ -113,12 +123,9 @@ public class TransactionMenu {
 
         for (Transaction t: transactions) {
 
-            for(int i=0; i < transactions.size();i++){
-                transactionID = transactionID+=i;
-            }
-
             if(username.equals(t.getSender())){
                 System.out.println(t);
+
             }
         }
     }

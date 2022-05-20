@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
 public class UserRepo implements Repo<User>{
@@ -26,31 +25,27 @@ public class UserRepo implements Repo<User>{
             preparedStatement.setString(6, user.getPassword());
             preparedStatement.setInt(7, user.getPhoneNumber());
             preparedStatement.executeUpdate();
-        }
-        catch(Exception e){
 
+        } catch(Exception e){
             e.printStackTrace();
 
         }
     }
 
-    @Override
-     public void update(String username, int balance) {
+    public void update(String username, int balance) {
 
-            try {
+        try {
+            String sql = "UPDATE users Set balance = ? WHERE username = ?";
 
-                String sql = "UPDATE users Set balance = ? WHERE username = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, balance);
+            preparedStatement.setString(2, username);
+            preparedStatement.executeUpdate();
 
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, balance);
-                preparedStatement.setString(2, username);
-                preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
 
-            } catch (SQLException exception) {
-
-                exception.printStackTrace();
-
-            }
+        }
     }
 
 
@@ -64,22 +59,23 @@ public class UserRepo implements Repo<User>{
 
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 int id = resultSet.getInt("userid");
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("lastname");
-                int socialsecuritynumber = resultSet.getInt("socialsecuritynumber");
+                int socialSecurityNumber = resultSet.getInt("socialsecuritynumber");
                 String gender = resultSet.getString("gender");
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 int phoneNumber = resultSet.getInt("phonenumber");
                 int balance = resultSet.getInt("balance");
 
-                User user = new User(id, name, lastName, socialsecuritynumber, gender, userName, password, phoneNumber, balance);
+                User user = new User(id, name, lastName, socialSecurityNumber, gender, userName, password, phoneNumber, balance);
                 return user;
+
         }
 
-    }catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
 
@@ -108,12 +104,15 @@ public class UserRepo implements Repo<User>{
                 int balance = resultSet.getInt("balance");
 
                 User reciever = new User(id, name, lastName, socialsecuritynumber, gender, userName, password, phoneNumber, balance);
+
                 return reciever;
+
             }
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
+
         return null;
 
     }

@@ -50,8 +50,6 @@ public class LoginMenu {
 
             loggedIn = validateLogin(input, user, passwordInput, transactions);
 
-            System.out.println("you are logged in as " + username + "\n");
-            System.out.println("Redirecting to main menu... "+ "\n");
         }
     }
 
@@ -67,13 +65,16 @@ public class LoginMenu {
 
             }else{
                 System.out.println("\n"+"Wrong user name or password");
+
             }
 
         }else{
             System.out.println("\n"+"Wrong user name or password");
+
         }
         System.out.println();
         return false;
+
     }
 
     public static void create(Scanner input) {
@@ -112,12 +113,16 @@ public class LoginMenu {
 
     public static void myPageMenu(Scanner input, User user, ArrayList<Transaction> transactions) {
 
+        System.out.println("You are logged in as " + username + "\n");
+
         int answer = 1;
 
         while (answer != 0) {
-            System.out.println("Press 1 to show personal page");
-            System.out.println("Press 2 to go to main menu");
-            System.out.println("Press 0 to logout");
+            System.out.println("Select your options");
+            System.out.println("-------------------------\n");
+            System.out.println("Press '1' to show personal page");
+            System.out.println("Press '2' to go to main menu");
+            System.out.println("Press '0' to logout");
 
             answer = input.nextInt();
 

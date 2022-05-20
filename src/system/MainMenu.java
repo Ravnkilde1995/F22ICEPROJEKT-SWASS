@@ -25,9 +25,11 @@ public class MainMenu {
                 case 1:
                     UserMenu.userMenu(input);
                     break;
+
                 case 2:
-                    TransactionMenu.TransactionMenu(input, transactions);
+                    TransactionMenu.transactionMenu(input, transactions);
                     break;
+
                 case 0:
                     System.out.println("Going back to login menu... \n");
                     break;

@@ -28,6 +28,7 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.balance = balance;
+
     }
 
     public User(String name, String lastName, int socialSecurityNumber, String gender, String username, String password, int phoneNumber) {
@@ -38,6 +39,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
+
     }
 
     //Methods
@@ -89,5 +91,6 @@ public class User {
                 ", phoneNumber=" + phoneNumber +
                 ", balance=" + balance +
                 '}';
+
     }
 }
