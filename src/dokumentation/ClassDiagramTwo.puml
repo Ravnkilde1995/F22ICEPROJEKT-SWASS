@@ -1,14 +1,16 @@
 @startuml
 
-DBConnector -- Main
+DBConnector <-- Main
 Main -- LoginMenu
 LoginMenu -- MainMenu
 MainMenu -- UserMenu
 MainMenu -- TransactionMenu
 UserMenu -- User
 TransactionMenu -- Transaction
-Repo -- UserRepo
-Repo -- TransactionRepo
+Repo <|.. "1 " UserRepo : contains
+Repo <|.."1 " TransactionRepo : contains
+DBConnector <-- UserRepo
+DBConnector <-- TransactionRepo
 
 class DBConnector {
 + Connection connection;
@@ -16,8 +18,8 @@ class DBConnector {
 }
 
 class LoginMenu{
- static String username
- static int answer
+ {static} String username
+ {static} int answer
 
 + login()
 + boolean validateLogin()
@@ -41,7 +43,7 @@ class MainMenu {
 }
 
 class UserMenu{
-static UserRepo userRepo
+{static} UserRepo userRepo
 
 + userMenu(Scanner input)
 + showBalance(Scanner input)
@@ -52,7 +54,7 @@ static UserRepo userRepo
 }
 
 class TransactionMenu{
-static TransactionRepo transactionRepo
+{static} TransactionRepo transactionRepo
 
 + TransactionMenu(Scanner input, ArrayList<Transaction> transactions)
 + searchForUser(Scanner input)
@@ -99,10 +101,10 @@ class Transaction {
 
 interface Repo {
 + create(T t)
-+ update(T t)
 }
+
 class UserRepo {
-static Connection connection = DBConnection.connection
+{static} Connection connection = DBConnection.connection
 
 + create(User user)
 + update(String username, int balance)
@@ -111,6 +113,8 @@ static Connection connection = DBConnection.connection
 
 }
 class TransactionRepo {
+{static} Connection connection = DBConnection.connection
+
 + void create(Transaction transactions)
 }
 
