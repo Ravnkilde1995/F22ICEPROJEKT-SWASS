@@ -21,6 +21,5 @@ public class Main {
 
         LoginMenu.loginMenu(input, transactions);
 
-        UserMenu.saveData(transactions);
     }
 }

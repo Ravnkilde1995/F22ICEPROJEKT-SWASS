@@ -1,20 +1,21 @@
 @startuml
 
-DBConnector <-- Main
-Main -- LoginMenu
-LoginMenu -- MainMenu
-MainMenu -- UserMenu
-MainMenu -- TransactionMenu
-UserMenu -- User
-TransactionMenu -- Transaction
-Repo <|.. "1 " UserRepo : contains
-Repo <|.."1 " TransactionRepo : contains
-DBConnector <-- UserRepo
-DBConnector <-- TransactionRepo
+DBConnector "1" -- "1" Main
+Main "1" -- "1" LoginMenu : has a
+LoginMenu "1" -- "1" MainMenu : has a
+MainMenu "1" -- "1" UserMenu : has a
+MainMenu "1" -- "1" TransactionMenu : has a
+UserMenu "1" -- "0..*" User : contains
+TransactionMenu "1" -- "0..*" Transaction : contains
+Repo "1" <|.. "1 " UserRepo : uses
+Repo "1" <|.."1 " TransactionRepo : uses
+DBConnector "1" -- "1 " UserRepo : contains
+DBConnector "1" -- "1" TransactionRepo : contains
 
 class DBConnector {
 + Connection connection;
 + createConnection()
+
 }
 
 class LoginMenu{
@@ -36,10 +37,12 @@ ArrayList<Transaction> transactions
 + UserMenu.loadData()
 + LoginMenu.LoginMenu(input, transactions)
 + UserMenu.saveData(transactions)
+
 }
 
 class MainMenu {
 + mainMenu(Scanner input, ArrayList<Transaction> transactions)
+
 }
 
 class UserMenu{
@@ -51,6 +54,7 @@ class UserMenu{
 + addDeposit(Scanner input)
 + saveData(ArrayList<Transaction> transactions)
 + loadData()
+
 }
 
 class TransactionMenu{
@@ -60,6 +64,7 @@ class TransactionMenu{
 + searchForUser(Scanner input)
 + commitTransactions(Scanner input, ArrayList<Transaction> transactions)
 + showTransactions(Scanner input, ArrayList<Transaction> transactions)
+
 }
 
 class User{
@@ -82,7 +87,9 @@ class User{
 + getPhoneNumber()
 + getBalance(int)
 + toString()
+
 }
+
 class Transaction {
 - int transactionID
 - int date1
@@ -97,10 +104,12 @@ class Transaction {
 + getSender()
 + getReceiver()
 + toString()
+
 }
 
 interface Repo {
 + create(T t)
+
 }
 
 class UserRepo {
@@ -112,10 +121,12 @@ class UserRepo {
 + User getUserByID(int ID)
 
 }
+
 class TransactionRepo {
 {static} Connection connection = DBConnection.connection
 
 + void create(Transaction transactions)
+
 }
 
 @enduml

@@ -35,6 +35,7 @@ public class TransactionMenu {
 
                 case 2:
                     commitTransactions(input, transactions);
+                    UserMenu.saveData(transactions);
                     break;
 
                 case 3:
