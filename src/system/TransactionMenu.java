@@ -1,5 +1,8 @@
 package system;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +39,7 @@ public class TransactionMenu {
 
                 case 2:
                     commitTransactions(input, transactions);
-                    UserMenu.saveData(transactions);
+                    saveData(transactions);
                     break;
 
                 case 3:
@@ -126,5 +129,60 @@ public class TransactionMenu {
 
             }
         }
+    }
+
+
+    public static void saveData(ArrayList<Transaction> transactions) {
+
+        String data = "";
+
+        for(Transaction t: transactions) {
+
+            data+=   t.getDate1() + "," +  t.getAmount() + "," +  t.getSender() +"," + t.getReciever() + ",";
+
+        }
+
+        try {
+            FileWriter output = new FileWriter("src/system/TransactionData.txt");
+            output.write(data);
+            output.close();
+
+        }
+        catch (IOException exception) {
+
+        }
+    }
+
+    public static ArrayList<Transaction> loadData(){
+
+        File text = new File("src/system/TransactionData.txt");
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        try{
+            Scanner scanner = new Scanner(text);
+
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                if (line.length() > 0) {
+                    Scanner lineScanner = new Scanner(line);
+                    lineScanner.useDelimiter(",");
+                    String date = lineScanner.next();
+                    int amount = lineScanner.nextInt();
+                    String sender = lineScanner.next();
+                    int reviever = lineScanner.nextInt();
+
+                    Transaction loadedTransactions = new Transaction(date, amount, sender, reviever);
+                    transactions.add(loadedTransactions);
+
+                }
+            }
+
+        }catch (IOException exception) {
+
+        }
+
+        return transactions;
+
     }
 }

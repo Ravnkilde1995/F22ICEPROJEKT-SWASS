@@ -16,7 +16,7 @@ public class Main {
         TransactionMenu.transactionRepo = new TransactionRepo();
         UserMenu.userRepo = new UserRepo();
 
-        transactions = UserMenu.loadData();
+        transactions = TransactionMenu.loadData();
 
         LoginMenu.loginMenu(input, transactions);
 

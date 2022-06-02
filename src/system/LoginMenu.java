@@ -141,7 +141,7 @@ public class LoginMenu {
 
                 case 2:
                     System.out.println("Redirecting to main menu..." + "\n");
-                    transactions = UserMenu.loadData();
+                    transactions = TransactionMenu.loadData();
                     MainMenu.mainMenu(input, transactions);
                     break;
 
