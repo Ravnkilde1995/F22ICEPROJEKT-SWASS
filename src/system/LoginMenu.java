@@ -9,6 +9,8 @@ public class LoginMenu {
     static String username;
     static int answer;
 
+    static String currentUser;
+
     public static void loginMenu(Scanner input, ArrayList<Transaction> transactions) {
 
         answer = 1;
@@ -42,6 +44,7 @@ public class LoginMenu {
             System.out.println("LOG IN");
             System.out.print("Username: ");
             String usernameInput = input.next();
+            currentUser = usernameInput;
             System.out.print("Password: ");
             String passwordInput = input.next();
             System.out.println("\n");
@@ -49,7 +52,6 @@ public class LoginMenu {
             User user = UserRepo.getUserByUsername(usernameInput);
 
             loggedIn = validateLogin(input, user, passwordInput, transactions);
-
         }
     }
 
@@ -68,7 +70,7 @@ public class LoginMenu {
 
             }
 
-        }else{
+        } else {
             System.out.println("\n"+"Wrong user name or password");
 
         }

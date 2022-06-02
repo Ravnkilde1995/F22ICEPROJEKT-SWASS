@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static system.DBConnection.connection;
+import static system.LoginMenu.currentUser;
 
 public class TransactionMenu {
 
@@ -80,9 +81,6 @@ public class TransactionMenu {
 
     public static void commitTransactions(Scanner input, ArrayList<Transaction> transactions){
 
-        System.out.println("Type in your username: ");
-        String username = input.next();
-
         System.out.println("Type in the ID of the user you want to transfer money to");
         int ID = input.nextInt();
 
@@ -93,7 +91,7 @@ public class TransactionMenu {
         String currentDate = String.valueOf(date);
 
         UserRepo userRepo = new UserRepo();
-        User sender = UserRepo.getUserByUsername(username);
+        User sender = UserRepo.getUserByUsername(currentUser);
         User reciever = UserRepo.getUserByID(ID);
 
         int recieverAmount = reciever.getBalance()+amount;
@@ -101,11 +99,11 @@ public class TransactionMenu {
 
 
         if(sender.getBalance()-amount>=0) {
-            userRepo.update(username, senderAmount);
+            userRepo.update(currentUser, senderAmount);
             userRepo.update(reciever.getUsername(), recieverAmount);
 
             TransactionRepo transactionRepo = new TransactionRepo();
-            Transaction allTransactions = new Transaction(currentDate, amount, username, ID);
+            Transaction allTransactions = new Transaction(currentDate, amount, currentUser, ID);
 
             transactionRepo.create(allTransactions);
             transactions.add(allTransactions);
@@ -113,7 +111,6 @@ public class TransactionMenu {
         }
         else {
             System.out.println("You dont have enought money to transfer");
-
         }
     }
 
