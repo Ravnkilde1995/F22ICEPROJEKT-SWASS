@@ -1,5 +1,8 @@
 package system;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +11,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static system.DBConnection.connection;
+import static system.LoginMenu.currentUser;
 
 public class TransactionMenu {
 
@@ -35,7 +39,7 @@ public class TransactionMenu {
 
                 case 2:
                     commitTransactions(input, transactions);
-                    UserMenu.saveData(transactions);
+                    saveData(transactions);
                     break;
 
                 case 3:
@@ -80,9 +84,6 @@ public class TransactionMenu {
 
     public static void commitTransactions(Scanner input, ArrayList<Transaction> transactions){
 
-        System.out.println("Type in your username: ");
-        String username = input.next();
-
         System.out.println("Type in the ID of the user you want to transfer money to");
         int ID = input.nextInt();
 
@@ -93,7 +94,7 @@ public class TransactionMenu {
         String currentDate = String.valueOf(date);
 
         UserRepo userRepo = new UserRepo();
-        User sender = UserRepo.getUserByUsername(username);
+        User sender = UserRepo.getUserByUsername(currentUser);
         User reciever = UserRepo.getUserByID(ID);
 
         int recieverAmount = reciever.getBalance()+amount;
@@ -101,11 +102,11 @@ public class TransactionMenu {
 
 
         if(sender.getBalance()-amount>=0) {
-            userRepo.update(username, senderAmount);
+            userRepo.update(currentUser, senderAmount);
             userRepo.update(reciever.getUsername(), recieverAmount);
 
             TransactionRepo transactionRepo = new TransactionRepo();
-            Transaction allTransactions = new Transaction(currentDate, amount, username, ID);
+            Transaction allTransactions = new Transaction(currentDate, amount, currentUser, ID);
 
             transactionRepo.create(allTransactions);
             transactions.add(allTransactions);
@@ -113,7 +114,6 @@ public class TransactionMenu {
         }
         else {
             System.out.println("You dont have enought money to transfer");
-
         }
     }
 
@@ -129,5 +129,60 @@ public class TransactionMenu {
 
             }
         }
+    }
+
+
+    public static void saveData(ArrayList<Transaction> transactions) {
+
+        String data = "";
+
+        for(Transaction t: transactions) {
+
+            data+=   t.getDate1() + "," +  t.getAmount() + "," +  t.getSender() +"," + t.getReciever() + ",";
+
+        }
+
+        try {
+            FileWriter output = new FileWriter("src/system/TransactionData.txt");
+            output.write(data);
+            output.close();
+
+        }
+        catch (IOException exception) {
+
+        }
+    }
+
+    public static ArrayList<Transaction> loadData(){
+
+        File text = new File("src/system/TransactionData.txt");
+        ArrayList<Transaction> transactions = new ArrayList<>();
+
+        try{
+            Scanner scanner = new Scanner(text);
+
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                if (line.length() > 0) {
+                    Scanner lineScanner = new Scanner(line);
+                    lineScanner.useDelimiter(",");
+                    String date = lineScanner.next();
+                    int amount = lineScanner.nextInt();
+                    String sender = lineScanner.next();
+                    int reviever = lineScanner.nextInt();
+
+                    Transaction loadedTransactions = new Transaction(date, amount, sender, reviever);
+                    transactions.add(loadedTransactions);
+
+                }
+            }
+
+        }catch (IOException exception) {
+
+        }
+
+        return transactions;
+
     }
 }
